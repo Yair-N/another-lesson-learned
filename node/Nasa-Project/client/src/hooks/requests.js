@@ -1,5 +1,5 @@
 const PORT = 8000
-const API_URL = `http:// localhost:${PORT}`
+const API_URL = `http://localhost:${PORT}`
 // Load planets and return as JSON.
 async function httpGetPlanets() {
   // TODO: Once API is ready. - DONE
