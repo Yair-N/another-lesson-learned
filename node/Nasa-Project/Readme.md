@@ -1,9 +1,9 @@
 # Creating  Node API with express and React frontend
 
-build and run `(front on port 8000)`  
+install
 
 ```bash
-npm run deploy
+npm install 
 ```
 
 dev and run `(front on port 3000)`  
@@ -12,8 +12,14 @@ dev and run `(front on port 3000)`
 npm run watch
 ```
 
+build and run `(front on port 8000)`  
+
+```bash
+npm run deploy
+```
+
 ![Diagram](Nasa-Project.png)
 
 ## Testing
 
-* jest
+* jest and supertest
