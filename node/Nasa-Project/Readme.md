@@ -18,7 +18,7 @@ build and run `(front on port 8000)`
 npm run deploy
 ```
 
-![Diagram](Nasa-Project.png)
+![Diagram](Nasa-Project-diagram-v2.png)
 
 ## Testing
 
