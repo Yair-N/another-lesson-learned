@@ -1,9 +1,8 @@
-const launches = new Map()
+const launches = new Map() // require('./launches.mongo')
 
 
 const launch = {
     flightNumber: 1,
-    mission: "",
     rocket: "",
     number: "",
     launchDate: new Date("May 05, 2022"),
@@ -42,6 +41,7 @@ function abortLaunch(launchId) {
     aborted.success = false
     return aborted
 }
+
 
 module.exports = {
     getAllLaunches,
