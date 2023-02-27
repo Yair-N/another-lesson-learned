@@ -6,6 +6,7 @@ const {
 } = require('../../services/mongo')
 
 
+const API_VERSION = '/v1'
 
 describe('Launch API', () => {
 
@@ -21,7 +22,7 @@ describe('Launch API', () => {
     describe('Test GET /launches', () => {
         test('Should respond with 200 success', async () => {
             const response = await request(app)
-                .get('/launches')
+                .get(`${API_VERSION}/launches`)
                 .expect('Content-Type', /json/)
                 .expect(200)
             // expect(response.statusCode).toBe(200)
@@ -52,7 +53,7 @@ describe('Launch API', () => {
 
         test('Should respond with 200 success', async () => {
             const response = await request(app)
-                .post('/launches')
+                .post(`${API_VERSION}/launches`)
                 .send(completeTestObject)
                 .expect('Content-Type', /json/)
                 .expect(201)
@@ -65,7 +66,7 @@ describe('Launch API', () => {
 
         test('Should catch missing required properties', async () => {
             const response = await request(app)
-                .post('/launches')
+                .post(`${API_VERSION}/launches`)
                 .send(noDateObject)
                 .expect('Content-Type', /json/)
                 .expect(400)
@@ -76,7 +77,7 @@ describe('Launch API', () => {
 
         test('Should catch invalid dates', async () => {
             const response = await request(app)
-                .post('/launches')
+                .post(`${API_VERSION}/launches`)
                 .send(invalidDateObject)
                 .expect('Content-Type', /json/)
                 .expect(400)
