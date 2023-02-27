@@ -1,45 +1,85 @@
-const launches = new Map() // require('./launches.mongo')
+// const launches = new Map()
+const launchesDB = require('./launches.mongo')
+const planets = require('./planets.mongo')
 
+const DEFAULT_FLIGHT_NUMBER = 1
 
 const launch = {
     flightNumber: 1,
-    rocket: "",
-    number: "",
-    launchDate: new Date("May 05, 2022"),
-    target: "",
-    customer: [],
+    rocket: "Falcon 9",
+    mission: "Get Back",
+    launchDate: new Date("May 05, 2031"),
+    target: "Kepler-442 b",
+    customer: ["Lego movie", "Nasa and friends"],
     upcoming: true,
     success: true,
 }
-launches.set(launch.flightNumber, launch)
+// launches.set(launch.flightNumber, launch)
 
-let latestFlightNumber = Array.from(launches.values()).length
+async function getLatestFlightNumber() {
+    const latestLaunch = await launchesDB
+        .findOne()
+        .sort('-flightNumber')
+    if (!latestLaunch) {
+        return DEFAULT_FLIGHT_NUMBER
+    }
 
-
-function existsLaunchWithId(launchId) {
-    return launches.has(launchId)
+    return latestLaunch.flightNumber
 }
 
-function getAllLaunches() {
-    return Array.from(launches.values())
+saveLaunch(launch)
 
+async function existsLaunchWithId(launchId) {
+    
+    return await launchesDB.findOne( {flightNumber:launchId })
 }
 
-function addNewLaunch(launch) {
+async function getAllLaunches() {
+    return await launchesDB.find({}, '-_id -__v')
+}
+
+async function saveLaunch(launch) {
+    const planet = await planets.findOne({ keplerName: launch.target }, '-_id -__v')
+    if (!planet) {
+        throw new Error('No matching planet was found')
+    }
+    return await launchesDB.updateOne(
+        {
+            flightNumber: launch.flightNumber,
+        },
+        launch,
+        {
+            upsert: true,
+        }
+    )
+
+}
+async function addNewLaunch(launch) {
+    let latestFlightNumber = await getLatestFlightNumber()
     latestFlightNumber++
-    launches.set(latestFlightNumber, Object.assign(launch, {
+
+    // launches.set(latestFlightNumber, Object.assign(launch, {
+    //     success: true,
+    //     upcoming: true,
+    //     customers: ['my dreams', 'something else'],
+    //     flightNumber: latestFlightNumber,
+    // }))
+    return await saveLaunch(Object.assign(launch, {
         success: true,
         upcoming: true,
         customers: ['my dreams', 'something else'],
         flightNumber: latestFlightNumber,
     }))
+
 }
 
-function abortLaunch(launchId) {
-    const aborted = launches.get(launchId)
+async function abortLaunch(launchId) {
+    // const aborted = launches.get(launchId)
+    const aborted = await launchesDB.findOne( {flightNumber:launchId })
+    console.log(JSON.stringify(aborted))
     aborted.upcoming = false
     aborted.success = false
-    return aborted
+    return await saveLaunch(aborted)
 }
 
 

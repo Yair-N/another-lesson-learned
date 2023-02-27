@@ -59,23 +59,25 @@ function loadPlanetsData() {
 }
 
 
-async function savePlanet(planet){
-    try {await planets.updateOne({
-        keplerName: planet.kepler_name,
-    },{
-        keplerName: planet.kepler_name,
-    },{
-        upsert:true
-    })}catch(err){
-        console.error(`could not save planet, error:${err}`)
-    }
-}
 
 async function getAllPlanets() {
     // return habitablePlanets
-    return await planets.find({})
+    return await planets.find({}, '-_id -__v')
 }
 
+async function savePlanet(planet) {
+    try {
+        await planets.updateOne({
+            keplerName: planet.kepler_name,
+        }, {
+            keplerName: planet.kepler_name,
+        }, {
+            upsert: true
+        })
+    } catch (err) {
+        console.error(`could not save planet, error:${err}`)
+    }
+}
 module.exports = {
     getAllPlanets,
     loadPlanetsData,
