@@ -30,8 +30,8 @@ async function getLatestFlightNumber() {
 saveLaunch(launch)
 
 async function existsLaunchWithId(launchId) {
-    
-    return await launchesDB.findOne( {flightNumber:launchId })
+
+    return await launchesDB.findOne({ flightNumber: launchId })
 }
 
 async function getAllLaunches() {
@@ -43,7 +43,7 @@ async function saveLaunch(launch) {
     if (!planet) {
         throw new Error('No matching planet was found')
     }
-    return await launchesDB.updateOne(
+    return await launchesDB.findOnaAndUpdate(
         {
             flightNumber: launch.flightNumber,
         },
@@ -75,7 +75,7 @@ async function addNewLaunch(launch) {
 
 async function abortLaunch(launchId) {
     // const aborted = launches.get(launchId)
-    const aborted = await launchesDB.findOne( {flightNumber:launchId })
+    const aborted = await launchesDB.findOne({ flightNumber: launchId })
     console.log(JSON.stringify(aborted))
     aborted.upcoming = false
     aborted.success = false
