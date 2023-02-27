@@ -1,7 +1,6 @@
 // const launches = new Map()
 const launchesDB = require('./launches.mongo')
 const planets = require('./planets.mongo')
-
 const DEFAULT_FLIGHT_NUMBER = 1
 
 const launch = {
@@ -43,7 +42,7 @@ async function saveLaunch(launch) {
     if (!planet) {
         throw new Error('No matching planet was found')
     }
-    return await launchesDB.findOnaAndUpdate(
+    return await launchesDB.findOneAndUpdate(
         {
             flightNumber: launch.flightNumber,
         },
@@ -75,11 +74,14 @@ async function addNewLaunch(launch) {
 
 async function abortLaunch(launchId) {
     // const aborted = launches.get(launchId)
-    const aborted = await launchesDB.findOne({ flightNumber: launchId })
-    console.log(JSON.stringify(aborted))
-    aborted.upcoming = false
-    aborted.success = false
-    return await saveLaunch(aborted)
+    const aborted = await launchesDB.updateOne(
+        { flightNumber: launchId },
+        {
+            upcoming: false,
+            success: false,
+        }
+    )
+    return aborted.modifiedCount === 1
 }
 
 
