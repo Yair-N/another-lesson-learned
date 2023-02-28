@@ -29,3 +29,4 @@ jobs:
           node-version: ${{matrix.node-version}}
       - run: npm install --prefix node/Nasa-Project
       - run: npm run build --prefix node/Nasa-Project/client
+      - run: npm test --prefix node/Nasa-Project
