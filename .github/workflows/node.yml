@@ -22,5 +22,5 @@ jobs:
         uses: actions/setup-node@v3
         with: 
           node-version: '18'
-      - run: npm install
-      - run: npm run build --prefix client
+      - run: npm install --prefix node/Nasa-Project
+      - run: npm run build -prefix node/Nasa-Project/client
