@@ -137,12 +137,6 @@ async function addNewLaunch(launch) {
     let latestFlightNumber = await getLatestFlightNumber()
     latestFlightNumber++
 
-    // launches.set(latestFlightNumber, Object.assign(launch, {
-    //     success: true,
-    //     upcoming: true,
-    //     customers: ['my dreams', 'something else'],
-    //     flightNumber: latestFlightNumber,
-    // }))
     return await saveLaunch(Object.assign(launch, {
         success: true,
         upcoming: true,
