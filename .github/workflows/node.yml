@@ -4,13 +4,13 @@ on:
   push:
     branches: [master]
     paths: 
-      - .
+      - ./
       - node/Nasa-Project/**
 
   pull_request:
     branches: [master]
     paths: 
-      - .
+      - ./
       - node/Nasa-Project/**
     
 jobs:
