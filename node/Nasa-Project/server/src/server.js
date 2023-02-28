@@ -1,10 +1,12 @@
 const http = require('http')
-const mongoose = require('mongoose')
+
+require('dotenv').config()
+
+const app = require('./app')
 
 const { loadPlanetsData } = require('./models/planets.model')
 const { loadLaunchData } = require('./models/launches.model')
 const { mongoConnect } = require('./services/mongo')
-const app = require('./app')
 
 const PORT = process.env.PORT || 8000;
 
