@@ -4,23 +4,28 @@ on:
   push:
     branches: [master]
     paths: 
-      - .github/workflow/**
+      - .
       - node/Nasa-Project/**
 
   pull_request:
     branches: [master]
     paths: 
-      - .github/workflow/**
+      - .
       - node/Nasa-Project/**
     
 jobs:
   build:
+    env:
+      CI: true
+    strategy:
+      matrix:
+        node-version: [17.x, 18.x]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js version 18
+      - name: Use Node.js version ${{matrix.node-version}}
         uses: actions/setup-node@v3
         with: 
-          node-version: '18'
+          node-version: ${{matrix.node-version}}
       - run: npm install --prefix node/Nasa-Project
-      - run: npm run build -prefix node/Nasa-Project/client
+      - run: npm run build --prefix node/Nasa-Project/client
