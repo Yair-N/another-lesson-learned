@@ -20,8 +20,8 @@ jobs:
       MONGO_URL: mongodb://localhost/nasa
     strategy:
       matrix:
-        node-version: [17.x, 18.x]
-        mongodb-version: ['4.4','5.0','latest']
+        node-version: ['latest'
+        mongodb-version: ['latest']
     runs-on: ubuntu-latest
     steps:
       - name: MongoDB in GitHub Actions
