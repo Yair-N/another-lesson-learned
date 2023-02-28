@@ -5,7 +5,7 @@ const {
     mongoDisconnect
 } = require('../../services/mongo')
 
-
+const { loadPlanetsData } = require('../../models/planets.model')
 const API_VERSION = '/v1'
 
 describe('Launch API', () => {
@@ -13,6 +13,7 @@ describe('Launch API', () => {
 
     beforeAll(async () => {
         await mongoConnect()
+        await loadPlanetsData()
     })
 
     afterAll(async () => {
