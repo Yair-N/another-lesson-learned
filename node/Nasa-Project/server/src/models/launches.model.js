@@ -31,7 +31,6 @@ async function getLatestFlightNumber() {
     return latestLaunch.flightNumber
 }
 
-// saveLaunch(launch)
 
 async function findLaunch(filter) {
     return await launchesDB.findOne(filter)
