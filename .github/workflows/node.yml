@@ -4,13 +4,13 @@ on:
   push:
     branches: [master]
     paths: 
-      - .githun/workflow/**
+      - .github/workflow/**
       - node/Nasa-Project/**
 
   pull_request:
     branches: [master]
     paths: 
-      - .githun/workflow/**
+      - .github/workflow/**
       - node/Nasa-Project/**
     
 jobs:
