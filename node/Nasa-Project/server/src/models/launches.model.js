@@ -8,16 +8,16 @@ const DEFAULT_FLIGHT_NUMBER = 1
 
 const SPACEX_API_URL = `https://api.spacexdata.com/v4/launches/query`
 
-const launch = {
-    flightNumber: 1, //flight_number
-    rocket: "Falcon 9", // rocket.name
-    mission: "Get Back", //name
-    launchDate: new Date("May 05, 2031"), //date_utc
-    target: "Kepler-442 b",
-    customer: ["Lego movie", "Nasa and friends"],
-    upcoming: true, //upcoming
-    success: true, //success
-}
+// const launch = {
+//     flightNumber: 1, //flight_number
+//     rocket: "Falcon 9", // rocket.name
+//     mission: "Get Back", //name
+//     launchDate: new Date("May 05, 2031"), //date_utc
+//     target: "Kepler-442 b",
+//     customer: ["Lego movie", "Nasa and friends"],
+//     upcoming: true, //upcoming
+//     success: true, //success
+// }
 // launches.set(launch.flightNumber, launch)
 
 async function getLatestFlightNumber() {
@@ -31,7 +31,7 @@ async function getLatestFlightNumber() {
     return latestLaunch.flightNumber
 }
 
-saveLaunch(launch)
+// saveLaunch(launch)
 
 async function findLaunch(filter) {
     return await launchesDB.findOne(filter)
@@ -101,15 +101,20 @@ async function existsLaunchWithId(launchId) {
 }
 
 async function loadLaunchData() {
-    if (findLaunch({
+
+    if (await findLaunch({
         flightNumber: 1,
         rocket: 'Falcon 1'
     })) { console.log('Launch data already loaded!') }
     else { populateLaunchData() }
 }
 
-async function getAllLaunches() {
-    return await launchesDB.find({}, '-_id -__v')
+async function getAllLaunches(skip, limit) {
+    return await launchesDB
+        .find({}, '-_id -__v')
+        .sort({ flightNumber: 1 })
+        .skip(skip)
+        .limit(limit)
 }
 
 async function saveLaunch(launch) {
@@ -123,7 +128,6 @@ async function saveLaunch(launch) {
             upsert: true,
         }
     )
-
 }
 async function addNewLaunch(launch) {
     const planet = await planets.findOne({ keplerName: launch.target }, '-_id -__v')
