@@ -4,3 +4,4 @@ complete-node-bootcamp/
 node_modules/
 *.pem
 *.zip
+angular-dotnet/datingApp/.vscode/settings.json
