@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "IJ5/ch5b5+7Jmxq5rOrnp2q/ynyZ1MBznpjcuN/z5BIM40/GEza4lGMKvVmJwDH3AVBKmkScNfCtpIhf2v1Uww==",
+  "success": true,
+  "projectFilePath": "/home/yair/coding/another-lesson/angular-dotnet/datingApp/API/API.csproj",
+  "expectedPackageFiles": [
+    "/home/yair/.nuget/packages/microsoft.aspnetcore.openapi/7.0.3/microsoft.aspnetcore.openapi.7.0.3.nupkg.sha512",
+    "/home/yair/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/yair/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/home/yair/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "/home/yair/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "/home/yair/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "/home/yair/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
