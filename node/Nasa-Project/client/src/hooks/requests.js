@@ -2,8 +2,8 @@ const PORT = 8000
 const API_VERSION = 'v1'
 
 // uncomment API URL by environment 
-// const API_URL = `http://localhost:${PORT}/${API_VERSION}` // for dev
-const API_URL = API_VERSION // for docker
+const API_URL = `http://localhost:${PORT}/${API_VERSION}` // for dev
+// const API_URL = API_VERSION // for docker
 // Load planets and return as JSON.
 async function httpGetPlanets() {
   // TODO: Once API is ready. - DONE

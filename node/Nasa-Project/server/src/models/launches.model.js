@@ -109,11 +109,13 @@ async function loadLaunchData() {
 }
 
 async function getAllLaunches(skip, limit) {
-    return await launchesDB
+    const launches = await launchesDB
         .find({}, '-_id -__v')
         .sort({ flightNumber: 1 })
         .skip(skip)
         .limit(limit)
+        console.log(launches)
+        return  launches
 }
 
 async function saveLaunch(launch) {
